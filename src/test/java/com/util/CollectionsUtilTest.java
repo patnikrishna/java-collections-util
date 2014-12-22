@@ -58,6 +58,16 @@ class Person
 		this.gender = gender;
 	}
 	
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Name : ").append(name)
+			.append(", Surname : ").append(surname)
+			.append(", Age : ").append(age)
+			.append(", Gender : ").append(gender);
+		return builder.toString();
+	}
+	
 }
 
 
