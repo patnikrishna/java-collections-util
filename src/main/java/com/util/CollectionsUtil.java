@@ -1,16 +1,15 @@
 package com.util;
 
 import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 /**
  * 
- * @author Krishna This class is for utility methods related to Java Collections
+ * @author Krishna 
+ * 
+ * This class is for utility methods related to Java Collections
  *         that are not provided by JDK or Apache Commons
  */
 public class CollectionsUtil
@@ -50,8 +49,8 @@ public class CollectionsUtil
 		return null;
 	}
 
-	final public static Object getByKeyAsVariableValue(Map map,
-			Class typeClass, String variableName, Object key)
+	final public static Object getByKeyAsVariableValue(Map<?, ?> map,
+			Class<?> typeClass, String variableName, Object key)
 			throws Exception
 	{
 		if (map == null || map.isEmpty()) { throw new IllegalArgumentException(
@@ -64,7 +63,7 @@ public class CollectionsUtil
 		Method getterMethod = typeClass.getMethod("get"
 				+ capitalize(variableName));
 
-		Iterator iterator = map.keySet().iterator();
+		Iterator<?> iterator = map.keySet().iterator();
 		while (iterator.hasNext())
 		{
 			Object object = iterator.next();
@@ -84,8 +83,8 @@ public class CollectionsUtil
 		return null;
 	}
 
-	final public static Object getByValueAsVariableValue(Map map,
-			Class typeClass, String variableName, Object value)
+	final public static Object getByValueAsVariableValue(Map<?, ?> map,
+			Class<?> typeClass, String variableName, Object value)
 			throws Exception
 	{
 		if (map == null || map.isEmpty()) { throw new IllegalArgumentException(
@@ -98,7 +97,7 @@ public class CollectionsUtil
 		Method getterMethod = typeClass.getMethod("get"
 				+ capitalize(variableName));
 
-		Iterator iterator = map.keySet().iterator();
+		Iterator<?> iterator = map.keySet().iterator();
 		while (iterator.hasNext())
 		{
 			Object key = iterator.next();
