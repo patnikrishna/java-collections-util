@@ -34,8 +34,10 @@ public class CollectionsUtil {
 					+ CANNOT_BE_NULL_MESSAGE);
 		}
 
-		Method getterMethod = typeClass.getMethod(GET
-				+ capitalize(variableName));
+		Field field = typeClass.getField(variableName);
+
+		Method getterMethod = typeClass.getMethod(getMethodName(variableName,
+				field.getClass()));
 
 		Iterator<T> iterator = collection.iterator();
 		while (iterator.hasNext()) {
@@ -71,8 +73,10 @@ public class CollectionsUtil {
 					+ CANNOT_BE_NULL_MESSAGE);
 		}
 
-		Method getterMethod = typeClass.getMethod(GET
-				+ capitalize(variableName));
+		Field field = typeClass.getField(variableName);
+
+		Method getterMethod = typeClass.getMethod(getMethodName(variableName,
+				field.getClass()));
 
 		Iterator<?> iterator = map.keySet().iterator();
 		while (iterator.hasNext()) {
@@ -108,8 +112,9 @@ public class CollectionsUtil {
 					+ CANNOT_BE_NULL_MESSAGE);
 		}
 
-		Method getterMethod = typeClass.getMethod(GET
-				+ capitalize(variableName));
+		Field field = typeClass.getField(variableName);
+		Method getterMethod = typeClass.getMethod(getMethodName(variableName,
+				field.getClass()));
 
 		Iterator<?> iterator = map.keySet().iterator();
 		while (iterator.hasNext()) {
@@ -138,6 +143,16 @@ public class CollectionsUtil {
 		return sb.toString();
 	}
 
+	private static String getMethodName(String name,
+			Class<? extends Object> clazz) {
+		String startsWith = null;
+		if (clazz != java.lang.Boolean.class)
+			startsWith = GET;
+		else
+			startsWith = IS;
+		return startsWith + capitalize(name);
+	}
+
 	public static String convertToString(Object object)
 			throws IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, NoSuchMethodException, SecurityException {
@@ -150,10 +165,10 @@ public class CollectionsUtil {
 				StringBuilder builder = new StringBuilder();
 				for (Field field : fields) {
 					fieldName = field.getName();
-					method = clazz.getMethod(GET + capitalize(fieldName), null);
+					method = clazz.getMethod(getMethodName(fieldName,
+							field.getClass()));
 					builder.append(fieldName).append(EQUAL)
-							.append(method.invoke(object, null))
-							.append(COMMA);
+							.append(method.invoke(object, null)).append(COMMA);
 				}
 				return builder.toString();
 			}

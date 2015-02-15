@@ -2,6 +2,7 @@ package com.util;
 
 public interface Constants {
 	String GET = "get";
+	String IS = "is";
 	enum COLLECTION_TYPES {
 		Map,List,ArrayList,HashMap,LinkedList,TreeMap,Collection
 	}
