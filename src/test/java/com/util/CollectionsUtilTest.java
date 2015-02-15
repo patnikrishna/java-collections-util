@@ -97,6 +97,9 @@ public class CollectionsUtilTest
 		returnValue = CollectionsUtil.getByKeyAsVariableValue(personVsNameMap, Person.class, "surname", "Patni");
 		System.out.println(returnValue);
 		
+		returnValue = CollectionsUtil.convertToString(krishna);
+		System.out.println(returnValue);
+		
 		
 	}
 

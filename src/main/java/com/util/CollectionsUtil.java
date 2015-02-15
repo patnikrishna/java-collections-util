@@ -1,5 +1,7 @@
 package com.util;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Collection;
 import java.util.Iterator;
@@ -129,10 +131,33 @@ public class CollectionsUtil {
 		return null;
 	}
 
-	private static String capitalize(String str) {
+	public static String capitalize(String str) {
 		StringBuilder sb = new StringBuilder(str.length());
 		sb.append(Character.toUpperCase(str.charAt(0)));
 		sb.append(str.substring(1));
 		return sb.toString();
+	}
+
+	public static String convertToString(Object object)
+			throws IllegalAccessException, IllegalArgumentException,
+			InvocationTargetException, NoSuchMethodException, SecurityException {
+		if (null != object) {
+			Class<? extends Object> clazz = object.getClass();
+			Field[] fields = clazz.getDeclaredFields();
+			Method method = null;
+			String fieldName = null;
+			if (null != fields && fields.length > 0) {
+				StringBuilder builder = new StringBuilder();
+				for (Field field : fields) {
+					fieldName = field.getName();
+					method = clazz.getMethod(GET + capitalize(fieldName), null);
+					builder.append(fieldName).append(EQUAL)
+							.append(method.invoke(object, null))
+							.append(COMMA);
+				}
+				return builder.toString();
+			}
+		}
+		return null;
 	}
 }

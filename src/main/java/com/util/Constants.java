@@ -9,4 +9,6 @@ public interface Constants {
 	String CANNOT_BE_NULL_MESSAGE = " cannot be null";
 	String VARIABLE_NAME = "variableName";
 	String TYPE_CLASS = "typeClass";
+	String EQUAL = "=";
+	String COMMA = ",";
 }
