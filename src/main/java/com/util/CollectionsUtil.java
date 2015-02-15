@@ -5,6 +5,8 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
 
+import static com.util.Constants.*;
+
 /**
  * 
  * @author Krishna
@@ -18,16 +20,19 @@ public class CollectionsUtil {
 			Class<T> typeClass, String variableName, Object value)
 			throws Exception {
 		if (collection == null || collection.isEmpty()) {
-			throw new IllegalArgumentException("collection cannot be empty");
+			throw new IllegalArgumentException(COLLECTION_TYPES.Collection
+					+ CANNOT_BE_NULL_MESSAGE);
 		}
 		if (typeClass == null) {
-			throw new IllegalArgumentException("typeClass cannot be null");
+			throw new IllegalArgumentException(TYPE_CLASS
+					+ CANNOT_BE_EMPTY_MESSAGE);
 		}
 		if (variableName == null || variableName.isEmpty()) {
-			throw new IllegalArgumentException("variableName cannot be empty");
+			throw new IllegalArgumentException(VARIABLE_NAME
+					+ CANNOT_BE_NULL_MESSAGE);
 		}
 
-		Method getterMethod = typeClass.getMethod("get"
+		Method getterMethod = typeClass.getMethod(GET
 				+ capitalize(variableName));
 
 		Iterator<T> iterator = collection.iterator();
@@ -52,16 +57,19 @@ public class CollectionsUtil {
 			Class<?> typeClass, String variableName, Object key)
 			throws Exception {
 		if (map == null || map.isEmpty()) {
-			throw new IllegalArgumentException("map cannot be empty");
+			throw new IllegalArgumentException(COLLECTION_TYPES.Map
+					+ CANNOT_BE_NULL_MESSAGE);
 		}
 		if (typeClass == null) {
-			throw new IllegalArgumentException("typeClass cannot be null");
+			throw new IllegalArgumentException(TYPE_CLASS
+					+ CANNOT_BE_EMPTY_MESSAGE);
 		}
 		if (variableName == null || variableName.isEmpty()) {
-			throw new IllegalArgumentException("variableName cannot be empty");
+			throw new IllegalArgumentException(VARIABLE_NAME
+					+ CANNOT_BE_NULL_MESSAGE);
 		}
 
-		Method getterMethod = typeClass.getMethod("get"
+		Method getterMethod = typeClass.getMethod(GET
 				+ capitalize(variableName));
 
 		Iterator<?> iterator = map.keySet().iterator();
@@ -86,16 +94,19 @@ public class CollectionsUtil {
 			Class<?> typeClass, String variableName, Object value)
 			throws Exception {
 		if (map == null || map.isEmpty()) {
-			throw new IllegalArgumentException("map cannot be empty");
+			throw new IllegalArgumentException(COLLECTION_TYPES.Map
+					+ CANNOT_BE_NULL_MESSAGE);
 		}
 		if (typeClass == null) {
-			throw new IllegalArgumentException("typeClass cannot be null");
+			throw new IllegalArgumentException(TYPE_CLASS
+					+ CANNOT_BE_EMPTY_MESSAGE);
 		}
 		if (variableName == null || variableName.isEmpty()) {
-			throw new IllegalArgumentException("variableName cannot be empty");
+			throw new IllegalArgumentException(VARIABLE_NAME
+					+ CANNOT_BE_NULL_MESSAGE);
 		}
 
-		Method getterMethod = typeClass.getMethod("get"
+		Method getterMethod = typeClass.getMethod(GET
 				+ capitalize(variableName));
 
 		Iterator<?> iterator = map.keySet().iterator();
