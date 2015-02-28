@@ -82,19 +82,19 @@ public class CollectionsUtilTest
 		List<Person> personList = new ArrayList<Person>();
 		personList.add(samplePerson);
 
-		Person person = CollectionsUtil.getByVariableValue(personList, Person.class, "age",30);
+		Person person = CollectionsUtil.getByFieldName(personList, Person.class, "age",30);
 		System.out.println(person);
 		
 		Map<String,Person> nameVsPersonMap = new HashMap<String,Person>();
 		nameVsPersonMap.put("some key", person);
 		
-		returnValue = CollectionsUtil.getByValueAsVariableValue(nameVsPersonMap, Person.class, "gender", "Male");
+		returnValue = CollectionsUtil.getByValueFromMap(nameVsPersonMap, Person.class, "gender", "Male");
 		System.out.println(returnValue);
 		
 		Map<Person,String> personVsNameMap = new HashMap<Person,String>();
 		personVsNameMap.put(person,"some value");
 		
-		returnValue = CollectionsUtil.getByKeyAsVariableValue(personVsNameMap, Person.class, "surname", "Patni");
+		returnValue = CollectionsUtil.getByKeyFromMap(personVsNameMap, Person.class, "surname", "Patni");
 		System.out.println(returnValue);
 		
 		returnValue = CollectionsUtil.convertToString(samplePerson);

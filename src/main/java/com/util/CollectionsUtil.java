@@ -18,8 +18,8 @@ import static com.util.Constants.*;
  */
 public class CollectionsUtil {
 
-	final public static <T> T getByVariableValue(Collection<T> collection,
-			Class<T> typeClass, String variableName, Object value)
+	final public static <T> T getByFieldName(Collection<T> collection,
+			Class<T> typeClass, String name, Object value)
 			throws Exception {
 		if (collection == null || collection.isEmpty()) {
 			throw new IllegalArgumentException(COLLECTION_TYPES.Collection
@@ -29,15 +29,14 @@ public class CollectionsUtil {
 			throw new IllegalArgumentException(TYPE_CLASS
 					+ CANNOT_BE_EMPTY_MESSAGE);
 		}
-		if (variableName == null || variableName.isEmpty()) {
+		if (name == null || name.isEmpty()) {
 			throw new IllegalArgumentException(VARIABLE_NAME
 					+ CANNOT_BE_NULL_MESSAGE);
 		}
 
-		Field field = typeClass.getDeclaredField(variableName);
+		Field field = typeClass.getDeclaredField(name);
 
-		Method getterMethod = typeClass.getMethod(getMethodName(variableName,
-				field.getClass()));
+		Method getterMethod = typeClass.getMethod(getMethodName(name,field.getClass()));
 
 		Iterator<T> iterator = collection.iterator();
 		while (iterator.hasNext()) {
@@ -57,8 +56,8 @@ public class CollectionsUtil {
 		return null;
 	}
 
-	final public static Object getByKeyAsVariableValue(Map<?, ?> map,
-			Class<?> typeClass, String variableName, Object key)
+	final public static Object getByKeyFromMap(Map<?, ?> map,
+			Class<?> typeClass, String name, Object key)
 			throws Exception {
 		if (map == null || map.isEmpty()) {
 			throw new IllegalArgumentException(COLLECTION_TYPES.Map
@@ -68,15 +67,14 @@ public class CollectionsUtil {
 			throw new IllegalArgumentException(TYPE_CLASS
 					+ CANNOT_BE_EMPTY_MESSAGE);
 		}
-		if (variableName == null || variableName.isEmpty()) {
+		if (name == null || name.isEmpty()) {
 			throw new IllegalArgumentException(VARIABLE_NAME
 					+ CANNOT_BE_NULL_MESSAGE);
 		}
 
-		Field field = typeClass.getDeclaredField(variableName);
+		Field field = typeClass.getDeclaredField(name);
 
-		Method getterMethod = typeClass.getMethod(getMethodName(variableName,
-				field.getClass()));
+		Method getterMethod = typeClass.getMethod(getMethodName(name,field.getClass()));
 
 		Iterator<?> iterator = map.keySet().iterator();
 		while (iterator.hasNext()) {
@@ -96,8 +94,8 @@ public class CollectionsUtil {
 		return null;
 	}
 
-	final public static Object getByValueAsVariableValue(Map<?, ?> map,
-			Class<?> typeClass, String variableName, Object value)
+	final public static Object getByValueFromMap(Map<?, ?> map,
+			Class<?> typeClass, String name, Object value)
 			throws Exception {
 		if (map == null || map.isEmpty()) {
 			throw new IllegalArgumentException(COLLECTION_TYPES.Map
@@ -107,13 +105,13 @@ public class CollectionsUtil {
 			throw new IllegalArgumentException(TYPE_CLASS
 					+ CANNOT_BE_EMPTY_MESSAGE);
 		}
-		if (variableName == null || variableName.isEmpty()) {
+		if (name == null || name.isEmpty()) {
 			throw new IllegalArgumentException(VARIABLE_NAME
 					+ CANNOT_BE_NULL_MESSAGE);
 		}
 
-		Field field = typeClass.getDeclaredField(variableName);
-		Method getterMethod = typeClass.getMethod(getMethodName(variableName,
+		Field field = typeClass.getDeclaredField(name);
+		Method getterMethod = typeClass.getMethod(getMethodName(name,
 				field.getClass()));
 
 		Iterator<?> iterator = map.keySet().iterator();
