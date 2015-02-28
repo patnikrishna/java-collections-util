@@ -78,9 +78,9 @@ public class CollectionsUtilTest
 	{
 		Object returnValue = null;
 		
-		Person krishna = new Person("John", "Doe", 30,"Male");
+		Person samplePerson = new Person("John", "Doe", 30,"Male");
 		List<Person> personList = new ArrayList<Person>();
-		personList.add(krishna);
+		personList.add(samplePerson);
 
 		Person person = CollectionsUtil.getByVariableValue(personList, Person.class, "age",30);
 		System.out.println(person);
@@ -97,7 +97,7 @@ public class CollectionsUtilTest
 		returnValue = CollectionsUtil.getByKeyAsVariableValue(personVsNameMap, Person.class, "surname", "Patni");
 		System.out.println(returnValue);
 		
-		returnValue = CollectionsUtil.convertToString(krishna);
+		returnValue = CollectionsUtil.convertToString(samplePerson);
 		System.out.println(returnValue);
 		
 		

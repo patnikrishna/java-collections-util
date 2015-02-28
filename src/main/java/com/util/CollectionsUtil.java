@@ -34,7 +34,7 @@ public class CollectionsUtil {
 					+ CANNOT_BE_NULL_MESSAGE);
 		}
 
-		Field field = typeClass.getField(variableName);
+		Field field = typeClass.getDeclaredField(variableName);
 
 		Method getterMethod = typeClass.getMethod(getMethodName(variableName,
 				field.getClass()));
@@ -73,7 +73,7 @@ public class CollectionsUtil {
 					+ CANNOT_BE_NULL_MESSAGE);
 		}
 
-		Field field = typeClass.getField(variableName);
+		Field field = typeClass.getDeclaredField(variableName);
 
 		Method getterMethod = typeClass.getMethod(getMethodName(variableName,
 				field.getClass()));
@@ -112,7 +112,7 @@ public class CollectionsUtil {
 					+ CANNOT_BE_NULL_MESSAGE);
 		}
 
-		Field field = typeClass.getField(variableName);
+		Field field = typeClass.getDeclaredField(variableName);
 		Method getterMethod = typeClass.getMethod(getMethodName(variableName,
 				field.getClass()));
 
